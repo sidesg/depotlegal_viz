@@ -14,7 +14,7 @@ fig_worksyear = px.line(
     x = data_worksyear.index,
     y = data_worksyear.values,
     labels = {
-        "x": "An",
+        "x": "Année",
         "y": "Oeuvres reçues"
     },
     title= "Oeuvres reçues par an",
@@ -59,6 +59,11 @@ def update_line_chart(typeles):
         df[mask], 
         x="year", y="size", color='types_element',
         title="Types d'élément reçus par an",
+        labels={
+            "year" : "Année",
+            "size" : "Oeuvres déposées",
+            "types_element": "Type d'élément"
+        },
         markers=True
     )
     return fig
@@ -79,6 +84,7 @@ def update_graph(selected_year):
     filtered_df = filtered_df.value_counts().head(10)
 
     fig = px.bar(
+        title= "Top 10 sociétés de production",
         x=filtered_df.index, 
         y=filtered_df.values,
         labels={
@@ -101,10 +107,11 @@ def update_graph(socprod):
 
     fig = px.line(
         df[mask],
+        title = "Oeuvres déposées par an",
         x="year", y="size",
         labels={
-            "x" : "Année",
-            "y" : "Oeuvres déposées"
+            "year" : "Année",
+            "size" : "Oeuvres déposées"
         },
         markers=True
     )
@@ -123,10 +130,11 @@ def update_graph(socprod):
 
     fig = px.bar(
         df[mask],
+        title = "Types d'éléments déposés",
         x="types_element", y="size",
         labels={
-            "x" : "Société de production",
-            "y" : "Oeuvres déposées"
+            "types_element" : "Type d'élément",
+            "size" : "Oeuvres déposées"
         },
         text_auto=True
     )
